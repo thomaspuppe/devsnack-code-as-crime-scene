@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSnack: Your Code as a Crime Scene</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="slide-container">
+
+        <div class="slide" data-slide-type="title" data-title="Intro" style="background-image:url(images/background.png); background-size:cover;background-position:center; padding-top:30%;">
+            <h1>Your Code as a Crime Scene</h1>
+            <p class="subtitle">ZEIT Devsnack 2026-01-05</p>
+            <p style="display:flex; gap:1ch; align-items: center; justify-content: center;">
+                <img height="50" width="50" style="margin-block: 0; border-radius: 50%;" src="images/toy-face.png" alt="">
+                Thomas Puppe
+            </p>
+        </div>
+<aside>
+INTRO
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Complexity 1">
+            <h2>Welcher Code ist komplexer?</h2>
+            <img src="./images/complexity-1.png">
+        </div>
+
+<aside>
+Fangfrage: Welcher Code, der links oder der rechts, ist komplexer?
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Complexity 2">
+            <h2>Welcher Code ist komplexer?</h2>
+            <img src="./images/complexity-2.png">
+        </div>
+
+<aside>
+Beide sind gleich komplex. Wenn man als Metrik die "zyklomatische Komplexität" heranzieht.
+Die misst, wie viele unabhängige Pfade es durch den Quellcode gibt.
+Was sie nicht berücksichtigt, sind die inhaltliche Komplexität oder die Lesbarkeit des Codes.
+
+Die zyklomatische Komplexität als Softwaremetrik stammt aus den 70er Jahren.
+Es gibt zig andere Methoden zur Messung von Code Komplexität.
+Mir gefällt die "Whitespace Metrik".
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Negative Space Complexity">
+            <h2>"Negative Space" als Komplexitätsmetrik</h2>
+            <div class="r-hstack" style="gap:5vw">
+                <img src="images/negative-space-1.png" style="width:min(100%, 40vw)"/>
+                <img src="images/negative-space-2.png" style="width:min(100%, 40vw)"/>
+            </div>
+        </div>
+
+
+<aside>
+Da misst man einfach die Menge von Whitespace, also die Verschachtelung.
+Das ist total simpel, und genauso gut wie alles andere.
+</aside>
+
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="PHP Joke">
+            <img src="./images/scene-php.png">
+        </div>
+
+<aside>
+Du könntest genauso gut die Programmiersprache nehmen.
+Oder – Spaß beiseite – die Komplexität nach Halstead 
+(relativ Komplex: Anzahl von Operatoren und Variablen) oder Lines of Code.
+
+Auch die beiden sind genauso gut wie alles andere.
+Weil: Die sind alle gleich schlecht.
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="MRT Study">
+            <img src="./images/scene-study-mrt.png">
+        </div>
+
+<aside>
+Man hat wiederholt Studien gemacht, in denen Programmierer in MRT Röhren gesteckt wurden.
+Wo man Platzangst hat, und es tierisch laut ist. Also stressige Umgebung. 
+Dort drin sollten sie dann verschiedenen Code verstehen und debuggen.
+Das ist so ähnlich wie wenn Marco bei einem Incident hinter dir steht und über die Schulter schaut.
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="MRT Study">
+            <img src="./images/scene-python-mrt.png">
+        </div>
+
+<aside>
+Und da stellte sich heraus, dass _keine_ des getesteten Metriken oder Methoden zur Komplexitätsmessung mit der subjektiven Komplexität in signifikanter Korrelation standen. Also anders gesagt: die theoretische Analyse des Codes hat nicht zur wahrgenommenen Komplexität gepasst.
+
+Dazu kommen weitere Schwächen, die inhärent sind in der statischen Quellcodeanalyse.
+
+- Wenn du mehrere Zeilen auslagerst in eine Funktion – hilft das, oder musst du die erst durchlesen?
+- Jede Metrik, die zum Ziel wird, verliert ihre Wert. (Goodharts Law)
+
+Also kann man das Thema vergessen, weil Nerds es kaputtgeredet haben?
+
+Nein. Man kann es weiterdenken. 
+Zum Beispiel, indem man zunächst die Sinnfrage stellt.
+</aside>
+
+        <div class="slide" data-slide-type="quote" data-title="Tornhill Quote">
+            <blockquote>
+                Complex code is only a problem <br>if we need to deal with it.
+            </blockquote>
+            <footer>&mdash; Adam Tornhill</footer>
+        </div>
+
+<aside>
+Und darauf kommt, dass Komplexität an sich noch kein Problem ist. 
+Sondern erst, wenn wir mit ihr umgehen müssen.
+Komplexer Code, der irgendwo stabil läuft, und keine Probleme macht, ist doch fein.
+Das Zitat stammt von Adam Tornhill.
+</aside>
+
+
+        <div class="slide" data-slide-type="title" data-title="Adam Tornhill">
+            <h2>Adam Tornhill</h2>
+            <div class="r-hstack" style="gap:5vw">
+                <div style="width:min(100%, 40vw);font-size:larger;">
+                    <p>Schwedischer Softwareentwickler.</p>
+                    <p>Psychologie und Forensik.</p>
+                    <p>Software-Architektur und Code-Analyse.</p>
+                    <p>Buchautor.</p>
+                </div>
+                <img src="./images/book.jpg" style="width:min(100%, 20vw)" class="fragment"/>
+            </div>
+        </div>
+
+
+        <div class="slide" data-slide-type="quote" data-title="Tornhill Quote">
+            <blockquote>
+                We'll never be able to understand complex, large-scale systems just by looking at a single snapshot of the code.
+            </blockquote>
+            <footer>&mdash; Adam Tornhill</footer>
+        </div>
+
+<aside>
+Die zentrale Idee des Buches ist, dass wir große und komplexe Systeme nicht verstehen können, wenn wir nur statischen Code anschauen oder analysieren. Sondern wir müssen uns auch die Umgebung und Interaktionen anschauen.
+
+Und weil Tornhill eben auch Forensik studiert hat, kam er auf die schöne Idee, da Parallelen zu ziehen.
+Was das Thema zum Einen catchier macht. Und ihn auf neue Ideen brachte.
+Das vergleichende Beispiel aus der Kriminalgeschichte ist Jack the Ripper.
+</aside>
+
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Jack the Ripper">
+            <h2>Geographical Profiling</h2>
+            <img src="./images/jack-the-ripper.jpg">
+            <p>Quelle: <a href="https://www.slideserve.com/ewa/environmental-criminology">Environmental Criminology. By: Siamak Razzaghi, Rose Noordeh and Miki Amakawa.</a></p>
+        </div>
+
+<aside>
+Geografisches Profiline. Erklären.
+
+Diese Stadtplan Metapher lässt sich auch auf Code anwenden.
+Es gibt eine Software/Library, die Codebasen als Stadt darstellt.
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="CodeCity">
+            <img src="./images/codecity_screenshot.png">
+            <p>Richard Wettel: <a href="https://wettel.github.io/codecity.html">CodeCity</a></p>
+        </div>
+
+<aside>
+Jedes Haus ist ein File oder Klasse, jeder Block ein Modul.
+Die Fläche und Höhe haben ihre Bedeutung.
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Refactoring Hotspot">
+            <img src="./images/refactoring-hotspot.png">
+        </div>
+
+
+<aside>
+Diese Idee wendet Tornhill auch auf seine sogenannte Hotspot Analyse an. 
+Diese reduziert eine große Codebasis auf kritische Module oder Bereiche, 
+bei denen z.B. Testing und Refactoring mehr Wert haben als in anderen.
+
+Aber das ist nicht nur statische Code-Analyse, das hatten wir schon.
+Sondern es wird ergänzt um dynamische und externe Informationen.
+Was soll das heißen?
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Code Metrics">
+            <div class="r-hstack" style="gap:5vw">
+                <div style="width:min(100%, 30vw)">
+                    <img src="./images/scene-go.png" style="width:min(100%, 40vw)">
+                </div>
+                <div style="width:min(100%, 40vw)">
+                    <p class="subtitle">Teil 1/4</p>
+                    <h1>Code Metrics</h1>
+                    <p class="subtitle">Was sind die Tatorte?</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide" data-slide-type="title" data-title="Code Churn">
+            <h1>Code Churn</h1>
+            <p class="subtitle">Welche Files werden häufig angefasst?</p>
+        </div>
+
+
+        <div class="slide" data-slide-type="quote" data-title="Code Churn Quote">
+            <blockquote>
+                The number of times that a code changes is a better predictor of defects than code size.
+            </blockquote>
+            <footer>&mdash; Graves, Karr, Marron, Siy / Moser, Pedrycz, Succi</footer>
+        </div>
+
+<aside>
+Es gibt Studien, die besagen, dass Code, der häufig angefasst wird, mehr Fehler enthält.
+Hier greift natürlich auch ein Kreislauf: sobald ich weiß dass da Fehler drin sind, fasse ichd en Code ja wieder an.
+
+Aber: diese Info – egal wie man sich die Henne-Ei-Frage beantwortet – ist interessant.
+
+Und das kann ich isoliert ansehen, oder in Beziehung setzen zur Code-Komplexität wie wir sie kennen.
+
+Hotspot wird umso hotter: Komplexität + Energie, die reingesteckt wird.
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Code Churn">
+            <h1>Change Coupling</h1>
+            <p class="subtitle">Keine Abhängigkeit im Code, aber zwei Files werden immer wieder gemeinsam angefasst.</p>
+        </div>
+
+<aside>
+Eine weitere Idee ist es, Abhängigkeiten sichtbar zu machen, die nicht im Code zu finden sind aber in Git.
+
+Dazu werden Git Commits durchsucht, die betroffen Files angesehen, und da schaut man nach Mustern oder Wiederholungen.
+</aside>
+
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Change Coupling">
+            <h2>Change Coupling</h2>
+            <img src="./images/change-coupling.png">
+        </div>
+
+<aside>
+So könnte man das darstellen.
+
+Es ergeben sich bei CHange Coupling zwei interessante Fragen.
+
+- Philosophische: wenn Tests immer zusammen mit dem Code angefasst werden ...
+    - entweder werden Tests erweitert und angepasst
+    - oder die Tests hängen zu sehr an den konkreten Implementierungsdetails und zu wenig am Feature
+- Praktische
+    - entsprechend müsste man die Test Files ggf filtern per Pattern Matching
+    - individuell pro Projekt.
+
+Deutet darauf hin, dass solche Analysen nur Indizien liefern, oder Hinweise darauf wo man genauer hinschauen sollte. Sie liefern nicht automatisch sinnvolle Handlungsanweisungen.
+</aside>
+
+        <div class="slide" data-slide-type="bullets" data-title="Was tun mit den Hotspots?">
+            <h2>Was tun mit den Hotspots?</h2>
+            <ul>
+                <li>Technical Debt</li>
+                <li>Refactoring</li>
+                <li>Code Reviews</li>
+                <li>Tests</li>
+                <li>Onboarding</li>
+            </ul>
+        </div>
+
+<aside>
+Code Reviews: so nach "Cold Case" manier diese Stellen ansehen.
+Oder bei normalen Code Reviews hat man eine Warnung, dass das hier ein heißer Bereich ist.
+Viel Änderung, viele Defekte, _und_ komplexer Code.
+</aside>
+
+        <div class="slide" data-slide-type="quote" data-title="Code Churn Quote">
+            <blockquote>
+                Individuals with short time horizons face higher risk of criminal involvement, simply because they can reap the rewards of the crime here and now, whereas the punishment lies in an indefinite future.
+            </blockquote>
+            <footer>&mdash; Åkerlund, Golsteyn, Grönkvist, Lindahl</footer>
+        </div>
+
+<aside>
+Das Thema technische Schulden wird im Buch von Adam Tornhill übrigens mit diesem Zitat aus der forensischen Literatur eingeleitet.
+
+Menschen, die nicht weit in die Zukunft denken, bewerten kurzfristige Vorteile höher als langfristige Probleme, und haben deshalb eine größere Wahrscheinlichkeit kriminell zu werden.
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Zeitliche Verläufe">
+            <div class="r-hstack" style="gap:5vw">
+                <div style="width:min(100%, 30vw)">
+                    <img src="./images/scene-docker.png" style="width:min(100%, 30vw)">
+                </div>
+                <div style="width:min(100%, 40vw)">
+                    <p class="subtitle">Teil 2/4</p>
+                    <h1>Veränderungen</h1>
+                    <p class="subtitle">Wie verändert sich der Code?</p>
+                </div>
+            </div>
+        </div>
+
+<aside>
+Hotspots betrachten nicht nur den aktuellen Zustand von Code, sonder auch seine Geschichte.
+Und das kann ich mir auch nochmal im zeitlichen Verlauf anschauen. 
+Darauf gehen wir im nächsten Teil ein.
+
+Die Illustration hier erinnert uns an einen weiteren Aspekt: viele Tools und Ideen sind sprach-agnostisch. Ich kann solche Analysen nach Tornhhill auch auf Yaml Files oder Markdown anwenden.
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Complexity Trends">
+            <h1>Complexity Trends</h1>
+            <p class="subtitle">zeitlichen Verlauf sichtbar machen</p>
+        </div>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Complexity Trends">
+            <h2>Complexity Trends</h2>
+            <img src="./images/complexity-trends.png">
+        </div>
+
+<aside>
+Das kann sinnvoll und okay sein.
+Und manchmal kommt Komplexität auch einfach aus dem Business Kontext, da kann der Code nichts für.
+Aber diese Verläufe und ein Auseinanderdriften sind ein wichtiger Hotspot, um genauer hinzusehen.
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="Witnesses">
+            <h1>Witnesses / Surveillance</h1>
+            <p class="subtitle">externe Quellen heranziehen</p>
+        </div>
+
+
+        <div class="slide" data-slide-type="bullets" data-title="Witnesses">
+            <h2>Externe Quellen,<br>um Code Hotspots zu identifizieren</h2>
+            <ul>
+                <li>time-in-development per file: <br>Assoziation von Code zu Jira in-Progress Status.</li>
+                <li>number of defects per file: Bugtickets (oder FIX-commits)</li>
+                <li>percentage of unplanned work</li>
+            </ul>
+        </div>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Unplanned work">
+            <h2>percentage of unplanned work</h2>
+            <img src="./images/unplanned-work.png">
+        </div>
+
+<aside>
+Auch hier wieder. Es geht nicht primär um das Verhindern von Bugs, oder das Vermeiden von Arbeit.
+Sondern darum, zu wissen, wo Arbeit und Aufmerksamkeit am sinnvollsten eingesetzt sind.
+</aside>
+
+        <div class="slide" data-slide-type="title" data-title="The Social Side of Code">
+            <div class="r-hstack" style="gap:5vw">
+                <div style="width:min(100%, 30vw)">
+                    <img src="./images/scene-vivi.png" style="width:min(100%, 30vw)">
+                </div>
+                <div style="width:min(100%, 40vw)">
+                    <p class="subtitle">Teil 3/4</p>
+                    <h1>The Social Side of Code</h1>
+                    <p class="subtitle">Wer war am Tatort?</p>
+                </div>
+            </div>
+        </div>
+
+<aside>
+    Apropos Einsatz: im dritten und letzten Abschnitt des Buches geht es um die Menschen, die den Code schreiben. Was lässt sich darauf ableiten? Jenseits von Git Blame?
+</aside>
+
+        <div class="slide" data-slide-type="bullets" data-title="Witnesses">
+            <h2>Commit Authors analysieren</h2>
+            <ul>
+                <li>Number of Unique Authors (or teams) in each file (during the last year)</li>
+                <li>Brooke's law and Conway's law</li>
+                <li>Truck factor
+                    <ul>
+                        <li>"how many people can leave before we lose 50% of the code?"</li>
+                        <li><a href="https://codescene.io/projects/28616/jobs/562159/results/simulations/off-boarding">Off-boarding simulation</a>
+                    </ul>
+                </li>
+                <li>Abandoned Code</li>
+            </ul>
+        </div>
+
+<aside>
+    Fragen wer die Definitionen kennt.
+    Brookes Law: 
+    Conways Law:
+
+    Von 133 populären GitHub Repositories haben zwei Drittel einen Bus-Faktor von 1 oder 2.
+
+    Abandoned Code: Was wurde von Menschen geschrieben, die nicht mehr im Unternehmen sind?
+</aside>
+
+
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Abandoned Code">
+            <h2>Abandoned Code</h2>
+            <img src="./images/abandoned-code.png">
+        </div>
+
+<aside>
+
+    Auch hier wieder: insbesondere die Kombination aus Bugs und Komplexität und Churn ist wichtig.
+    Es macht ja nichts per se, wenn Code lange stabil ist und funktioniert.
+    Und auch nicht, wenn es Teile sind ... aber ganze Module sind schon schwieriger.
+
+    Hier ein Screenshot, das Teile von Vivi mit sogenanntem abandoned Code zeigt.
+</aside>
+
+
+        <div class="slide" data-slide-type="title" data-title="Tooling">
+            <div class="r-hstack" style="gap:5vw">
+                <div style="width:min(100%, 30vw)">
+                    <img src="./images/scene-linux.png" style="width:min(100%, 30vw)">
+                </div>
+                <div style="width:min(100%, 40vw)">
+                    <p class="subtitle">Teil 4/4</p>
+                    <h1>Tooling</h1>
+                    <p class="subtitle">Werkzeuge für die forensische Analyse</p>
+                </div>
+            </div>
+
+        </div>
+
+<aside>
+Die Arten von forensischer Code Analyse, die ich hier angerissen habe, bestehen aus zwei bis drei Teilen.
+</aside>
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Tooling Viz">
+            <img src="./images/tooling.png">
+        </div>
+
+<aside>
+Illustration für den Vibe, (kein Diagramm)
+
+- Erstens muss man wissen, wonach man sucht oder was man anschauen will.
+- Zweitens braucht es die Datenquellen – in der Regel den Quellcode und Git, aber ggf auch externe Quellen wie Jira.
+- Drittens eine gute Datenvisualisierung.
+
+Und diese drei Dinge können sich wieder gegenseitig beeinflussen.
+</aside>
+
+        <div class="slide" data-slide-type="bullets" data-title="Witnesses">
+            <h2>Tooling</h2>
+            <ul>
+                <li class="fragment"><a href="https://wettel.github.io/codecity.html">CodeCity</a> (statisch)</li>
+                <li class="fragment"><a href="https://github.com/adamtornhill/code-maat">Code-Maat</a> (Git Analyse)</li>
+                <li class="fragment"><a href="https://github.com/angular-architects/detective">Detective</a> (TypeScript)</li>
+                <li class="fragment">CodeScene SaaS von Adam Tornhill
+                    <ul>
+                        <li><a href="http://localhost:3003/2/analyses/2/code/technical-debt/system-map?max-code-health=10.00&min-change-freq=0&showHotspotsOnly=false&min-coverage=0.00&max-coverage=100.00#refactoring-target-type">Tech Debt</a> / <a href="http://localhost:3003/2/analyses/2/code/hotspots/biomarkers?name=vivi%2Fcore%2Fsrc%2Fzeit%2Fconnector%2Fpostgresql.py">File X-Ray</a> / <a href="http://localhost:3003/2/analyses/2/code/temporal-coupling/by-commits">Coupling</a> / <a href="http://localhost:3003/2/analyses/2/social/individuals/system-map?max-code-health=10.00&min-change-freq=0&showHotspotsOnly=false&min-coverage=0.00&max-coverage=100.00#author">Individuals</a> / <a href="http://localhost:3003/2/analyses/2/social/individuals/system-map?max-code-health=10.00&min-change-freq=0&showHotspotsOnly=false&min-coverage=0.00&max-coverage=100.00#keypersonnel">Knowledge Islands</a>, <a href="https://codescene.io/projects/28616/jobs/562159/results/simulations/off-boarding">Off-boarding simulation</a></li>
+                    </ul>
+                </li>
+                <li class="fragment">LLMs</li>
+            </ul>
+        </div>
+
+
+        <div class="slide" data-slide-type="title" data-title="Limits">
+            <h1>Limits</h1>
+            <p style="font-size:larger;">Kein Ersatz für andere Best Practices.</p>
+            <p style="font-size:larger;">Keine automatischen Action Items.</p>
+            <p style="font-size:larger;">Kann ein guter Anreiz für Diskussionen sein.</p>
+        </div>
+
+<aside>
+    ... oder um etwas zu verargumentieren, was man eh machen will.
+</aside>
+
+
+        <div class="slide" data-slide-type="image-only-contain" data-title="Abandoned Code">
+            <h2>Fragen und Diskussion</h2>
+            <p class="fragment">Wer ist der Mörder?</p>
+            <img class="fragment" src="./images/scene-crab.png">
+        </div>
+
+        <!-- TODO/IDEA: nochmal alle Crime Scenes zeigen, und dann erst den fehlenden revealen. Dazu noch mehr einbauen. -->
+
+        <!-- TODO: Insgesamt noch mehr Storytelling und Rhythmus und Übergänge. -->
+
+</div>
+
+    <!-- UI Elements -->
+    <div class="slide-counter"></div>
+    <div class="progress-bar"></div>
+    <!-- div class="fullscreen-hint">Press F11 for Fullscreen (Click to dismiss)</div -->
+    <div class="toc-overlay">
+        <div class="toc-content">
+            <h2>Table of Contents</h2>
+            <ul id="toc-list"></ul>
+        </div>
+    </div>
+
+    <div class="grid-overlay">
+        <div id="grid-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+<!--
+Feedback/Ideen nach dem Vortrag
+- mehr grafisch illustrieren, was das CSS tut (line height mit/ohne Runden. Margin mit em über verschiedene Textblöcke)!
+- utopia.fyi: Hinweisen darauf, dass man verschiedene Steigungen haben sollte.
+- deutlich machen, dass ZEIT nicht komplett so gebaut ist.
+- ZEIT Teaser als Demo zeigen, und da dran das Grid entwickeln. Dann im iframe zeigen, dass Zoomen das Layout verändert.
+-->
+
+
+<!--
+
+        <div class="slide" data-slide-type="title" data-title="Welcome">
+            <h1>Welcome to Vibecoding</h1>
+            <p class="subtitle">A Basecamp-Inspired Slide Deck</p>
+        </div>
+
+        <div class="slide" data-slide-type="headline-text" data-title="Core Idea">
+            <h2>Clean & Focused</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        </div>
+
+        <div class="slide" data-slide-type="bullets" data-title="Key Features">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Single HTML file for portability</li>
+                <li>Modern, clean Basecamp-like design</li>
+                <li>Keyboard, click, and swipe navigation</li>
+                <li>Includes multiple slide layouts</li>
+            </ul>
+        </div>
+
+        <div class="slide" data-slide-type="image-only" data-title="Inspirational Image">
+            <img src="https://picsum.photos/1600/900?grayscale" alt="Grayscale random image">
+        </div>
+
+        <div class="slide" data-slide-type="image-text" data-title="Split Layout">
+            <div class="image-container">
+                <img src="https://picsum.photos/800/600" alt="Random image">
+            </div>
+            <div class="text-container">
+                <h2>Image & Text</h2>
+                <p>Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
+            </div>
+        </div>
+
+        <div class="slide" data-slide-type="code" data-title="Code Example">
+            <h2>Code Example</h2>
+            <pre><code class="language-js">
+function helloWorld() {
+  console.log("Hello, from the slide deck!");
+}
+
+// Call the function
+helloWorld();
+            </code></pre>
+        </div>
+
+        <div class="slide" data-slide-type="headline-images" data-title="Image Grid">
+            <h2>A Gallery of Images</h2>
+            <div class="image-grid">
+                <img src="./images/font_steps.png" alt="Random image 1" class="fragment">
+                <img src="./images/font_multi_steps.png" alt="Random image 2" class="fragment">
+                <img src="./images/font_many_steps.png" alt="Random image 3" class="fragment">
+                <img src="./images/font_clamp.png" alt="Random image 4" class="fragment">
+            </div>
+        </div>
+
+        <div class="slide" data-slide-type="code-explanation" data-title="Code Explanation: clamp()">
+            <h2>Dissecting CSS `clamp()`</h2>
+            <pre><code class="no-highlight">font-size: clamp(<span data-highlight-id="1">1.25rem</span>, <span data-highlight-id="2">2vw + 1rem</span>, <span data-highlight-id="3">2.5rem</span>);</code></pre>
+            <div class="explanation-container">
+                <div class="fragment" data-explains="1">
+                    <p><strong>Minimum Value:</strong> This is the smallest the font size will ever be. It acts as the lower bound.</p>
+                </div>
+                <div class="fragment" data-explains="2">
+                    <p><strong>Preferred Value:</strong> This is the ideal, flexible value that scales with the viewport width.</p>
+                </div>
+                <div class="fragment" data-explains="3">
+                    <p><strong>Maximum Value:</strong> This is the largest the font size can get, acting as the upper bound.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" data-slide-type="quote" data-title="A Wise Quote">
+            <blockquote>
+                "The most important thing in communication is hearing what isn't said."
+            </blockquote>
+            <footer>&mdash; Peter Drucker</footer>
+        </div>
+    
+-->
+
+</body>
+</html>

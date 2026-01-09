@@ -1,0 +1,584 @@
+/* Basecamp Design Language */
+:root {
+    --bg-primary: #FAFAF8;
+    --text-primary: #1D1D1D;
+    --accent-primary: #1CA74E;
+    --accent-secondary: #3B5998;
+    --bg-code: #F5F5F3;
+    --border-subtle: #E5E5E1;
+    --shadow-subtle: 0 1px 3px rgba(0,0,0,0.12);
+    --border-radius: 6px;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.slide-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 4rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    visibility: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+/* Slide Types */
+.slide[data-slide-type="title"] h1 {
+    font-size: 64px;
+    margin: 0;
+}
+.slide[data-slide-type="title"] .subtitle {
+    font-size: 28px;
+    margin-top: 1rem;
+    color: #555;
+}
+
+.slide[data-slide-type="headline-text"] h2 {
+    font-size: 48px;
+    margin-bottom: 1rem;
+}
+.slide[data-slide-type="headline-text"] p {
+    font-size: 24px;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.slide[data-slide-type="bullets"] h2 {
+    font-size: 48px;
+    margin-bottom: 2rem;
+    align-self: flex-start;
+    width: 100%;
+    text-align: left;
+}
+.slide[data-slide-type="bullets"] ul {
+    font-size: 28px;
+    line-height: 1.8;
+    list-style-position: inside;
+    text-align: left;
+    align-self: flex-start;
+    padding-left: 0;
+    margin: 0;
+}
+.slide[data-slide-type="bullets"] ul li {
+    margin-bottom: 1rem;
+}
+.slide[data-slide-type="bullets"] ul  ul {
+    margin-left: 1rem;
+}
+
+.slide[data-slide-type="image-only"] {
+    padding: 0;
+}
+.slide[data-slide-type="image-only"] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TODO: refactor */
+.slide[data-slide-type="image-only-contain"] {
+    padding: 2rem;
+}
+.slide[data-slide-type="image-only-contain"] img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slide[data-slide-type="image-only"] video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.slide[data-slide-type="image-only"] iframe {
+    width: 90%;
+    height: 90%;
+
+    resize: both; 
+    overflow: scroll; 
+    border: 1px solid #ccc;
+}
+
+.slide[data-slide-type="image-text"] {
+    flex-direction: row;
+    gap: 2rem;
+    text-align: left;
+}
+.slide[data-slide-type="image-text"] .image-container {
+    flex: 1;
+}
+.slide[data-slide-type="image-text"] img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-subtle);
+}
+.slide[data-slide-type="image-text"] .text-container {
+    flex: 1;
+}
+.slide[data-slide-type="image-text"] h2 {
+    font-size: 48px;
+}
+.slide[data-slide-type="image-text"] p {
+    font-size: 24px;
+    line-height: 1.6;
+}
+
+.slide[data-slide-type="code"] {
+    text-align: left;
+}
+.slide[data-slide-type="code"] h2 {
+    font-size: 36px;
+    margin-bottom: 1rem;
+}
+.slide[data-slide-type="code"] pre {
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    width: 80%;
+    box-shadow: var(--shadow-subtle);
+    font-size: 18px;
+}
+
+.slide[data-slide-type="headline-images"] h2 {
+    font-size: 48px;
+    margin-bottom: 2rem;
+}
+
+.slide[data-slide-type="headline-images"] .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.slide[data-slide-type="headline-images"] .image-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-subtle);
+}
+
+.slide[data-slide-type="code-explanation"] {
+    text-align: left;
+}
+.slide[data-slide-type="code-explanation"] h2 {
+    font-size: 48px;
+    margin-bottom: 2rem;
+}
+.slide[data-slide-type="code-explanation"] pre {
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    width: 80%;
+    box-shadow: var(--shadow-subtle);
+    font-size: 22px;
+    margin-bottom: 1rem;
+}
+.slide[data-slide-type="code-explanation"] .explanation-container {
+    width: 80%;
+    min-height: 100px; /* Reserve space for explanations */
+    position: relative;
+}
+.slide[data-slide-type="code-explanation"] .explanation-container .fragment {
+    position: absolute;
+    font-size: 22px;
+    line-height: 1.6;
+}
+.slide[data-slide-type="code-explanation"] [data-highlight-id] {
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+.slide[data-slide-type="code-explanation"] [data-highlight-id].highlight-active {
+    background-color: rgba(28, 167, 78, 0.2);
+}
+
+.slide[data-slide-type="quote"] blockquote {
+    font-size: 48px;
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 800px;
+    border-left: 5px solid var(--accent-primary);
+    padding-left: 2rem;
+    margin: 0;
+    text-align: left;
+}
+
+.slide[data-slide-type="quote"] footer {
+    font-size: 24px;
+    margin-top: 2rem;
+    color: #555;
+    max-width: 800px;
+    width: 100%;
+    text-align: right;
+}
+
+/* Fragment styles */
+.fragment {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.fragment.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* UI Elements */
+.slide-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    z-index: 10;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--accent-primary);
+    width: 0;
+    transition: width 0.2s linear;
+    z-index: 10;
+}
+
+.fullscreen-hint {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--accent-secondary);
+    color: white;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    z-index: 10;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.toc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+.toc-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.toc-content {
+    background-color: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 90%;
+}
+.toc-content h2 {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+.toc-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.toc-content li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    color: var(--text-primary);
+}
+.toc-content li:hover {
+    color: var(--accent-primary);
+}
+
+/* Grid Overlay */
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 250, 248, 0.98); /* --bg-primary with opacity */
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    padding: 4rem;
+    box-sizing: border-box;
+}
+
+.grid-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#grid-container {
+    display: grid;
+    gap: 1rem; /* A smaller gap might be better for calculated grids */
+    width: 100%;
+    height: 100%;
+}
+
+.grid-thumbnail {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--shadow-subtle);
+    cursor: pointer;
+    position: relative;
+    /* aspect-ratio is no longer needed as the grid will enforce it */
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.grid-thumbnail .slide-clone {
+    /* transform, width, and height will be set dynamically by JS */
+    transform-origin: top left;
+    pointer-events: none;
+    /* Re-enable visibility for the clone */
+    visibility: visible;
+    opacity: 1;
+}
+
+.grid-thumbnail .slide-number {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Speaker notes - not visible during presentation */
+aside {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+/* Flex Layouts */
+
+.r-hstack, 
+.r-vstack {
+  display: flex;
+}
+.r-hstack {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.r-vstack {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.iframe-device {
+    border: #52514f solid;
+    border-width: 10px 10px 20px;
+    border-radius: 10px;
+
+    resize: both; 
+    overflow: auto; 
+    width: 90%px; 
+    height: 80%; 
+    display: inline-block;
+}
+.iframe-device iframe {
+    width: 100%; height: 100%; border: none; display: block;
+}
+
+/* Print Styles */
+@media print {
+    :root {
+        --print-notes-font-size: 12pt; /* Single variable for easy font size adjustment */
+    }
+
+    /* Reset body and container styling for printing */
+    body {
+        overflow: visible;
+        display: block;
+        height: auto;
+        background-color: white;
+        color: black;
+        padding: 1cm;
+        margin: 0;
+        font-family: var(--font-family);
+    }
+
+    /* Show all slides in print layout */
+    .slide-container {
+        width: 100%;
+        height: auto;
+        position: static;
+        display: block;
+    }
+
+    /* Style each slide as a small preview */
+    .slide {
+        clear: both;
+        position: relative;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 4cm;
+        height: 4.25cm;
+        padding: 0.2cm;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        display: block;
+        float: left;
+        page-break-inside: avoid;
+        /* We need to scale down the content to fit in 4cm */
+        transform: scale(0.8);
+        transform-origin: top left;
+    }
+    
+    /* Allow internal slide elements to appear at original size */
+    .slide > * {
+        transform-origin: top left;
+    }
+
+    /* Show all fragments in printed version */
+    .fragment {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Show speaker notes */
+    aside {
+        clear: both;
+        display: block;
+        visibility: visible;
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-left: 4.5cm; /* Position notes to the right of the slide */
+        margin-bottom: 1.5cm;
+        padding-bottom: 0.5cm;
+        border-bottom: 1px dotted #ccc;
+        font-size: var(--print-notes-font-size);
+        line-height: 1.5;
+        text-align: left;
+        color: #333;
+        width: 13cm; /* Allow enough space for notes on A4 */
+        white-space: pre-wrap;
+        clear: right;
+    }
+
+    /* Hide presentation UI elements */
+    .slide-counter,
+    .progress-bar,
+    .fullscreen-hint,
+    .toc-overlay,
+    .grid-overlay {
+        display: none;
+    }
+
+    h1, h2 {
+        font-size: unset !important;
+    }
+
+    /* Add slide title/number as label */
+    .slide::after {
+        content: "Slide " attr(data-slide-number) ": " attr(data-title);
+        position: absolute;
+        bottom: -1.2cm;
+        left: 0;
+        font-size: var(--print-notes-font-size);
+        font-weight: bold;
+        white-space: nowrap;
+        color: black;
+    }
+
+    /* Set up page format */
+    @page {
+        size: A4;
+        margin: 1.0cm;
+    }
+
+    /* Fix code formatting */
+    pre {
+        overflow: hidden;
+        max-width: 100%;
+    }
+    
+    /* Handle specific slide types */
+    .slide[data-slide-type="image-only"] img,
+    .slide[data-slide-type="image-only-contain"] img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    /* Make iframes static in print */
+    .iframe-device {
+        border: 1px solid #ccc;
+        overflow: hidden;
+    }
+}
